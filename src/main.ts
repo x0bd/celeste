@@ -2,4 +2,8 @@ import { Bit } from "./Celeste";
 
 const bit = new Bit({ name: "NEW Record", age: 0 });
 
-bit.save();
+bit.events.on("change", () => {
+	console.log("CHANGE!");
+});
+
+bit.events.trigger("change");

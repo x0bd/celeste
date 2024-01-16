@@ -1,8 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 
-// Model Stuff
-
-// Testing Purposes
 interface BitProps {
 	id?: number;
 	name?: string;
@@ -11,21 +8,9 @@ interface BitProps {
 
 type Callback = () => void;
 
-// Sort of Components in your Favorite Frameworks
-export class Bit {
+// Eventing
+export class Eventing {
 	events: { [key: string]: Callback[] } = {};
-
-	constructor(private data: BitProps) {}
-
-	get(propName: string): number | string {
-		return this.data[propName];
-	}
-
-	set(update: BitProps): void {
-		Object.assign(this.data, update);
-	}
-
-	// EventHandler
 	on(eventName: string, callback: Callback): void {
 		const handlers = this.events[eventName] || [];
 		handlers.push(callback);
@@ -43,7 +28,25 @@ export class Bit {
 			callback();
 		});
 	}
+}
 
+// Sort of Components in your Favorite Frameworks
+export class Bit {
+	public events: Eventing = new Eventing();
+
+	constructor(private data: BitProps) {}
+
+	get(propName: string): number | string {
+		return this.data[propName];
+	}
+
+	set(update: BitProps): void {
+		Object.assign(this.data, update);
+	}
+}
+
+// SYNC - data fetching and saving
+export class Sync {
 	fetch(): void {
 		axios
 			.get(`http://localhost:4000/bits/${this.get("id")}`)
