@@ -1,9 +1,5 @@
 import { Bit } from "./Celeste";
 
-const bit = new Bit({ id: 1 });
+const bit = new Bit({ name: "NEW Record", age: 0 });
 
-bit.fetch();
-
-setTimeout(() => {
-	console.log(bit);
-}, 4000);
+bit.save();

@@ -51,4 +51,16 @@ export class Bit {
 				this.set(response.data);
 			});
 	}
+
+	save(): void {
+		const id = this.get("id");
+		if (id) {
+			axios.put(
+				`http://localhost:4000/bits/${this.get("id")}`,
+				this.data
+			);
+		} else {
+			axios.post("http://localhost:4000/bits/", this.data);
+		}
+	}
 }
