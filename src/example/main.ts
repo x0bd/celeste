@@ -1,4 +1,4 @@
-import { Celeste } from "../lib/celeste";
+import { Celeste } from "../celeste";
 
 const celeste = new Celeste({ name: "NEW Record", age: 0 });
 

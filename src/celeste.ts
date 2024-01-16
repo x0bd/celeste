@@ -1,4 +1,4 @@
-import { Eventing } from "./core/event";
+import { Eventing } from "./lib/core/event";
 
 interface BitProps {
 	id?: number;
