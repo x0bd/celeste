@@ -1,20 +1,9 @@
 import { Bit } from "./Celeste";
 
-// Dummy User Functionality, sort of like a component in React Frameworks
-const bit = new Bit({ name: "myname", age: 45 });
+const bit = new Bit({ id: 1 });
 
-bit.on("change", () => {
-	console.log("change event");
-});
-bit.on("hover", () => {
-	console.log("hover event");
-});
-bit.on("click", () => {
-	console.log("click event");
-});
+bit.fetch();
 
-// Testing
-bit.trigger("change");
-bit.trigger("click");
-bit.trigger("hover");
-bit.trigger("dfdf");
+setTimeout(() => {
+	console.log(bit);
+}, 4000);

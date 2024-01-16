@@ -1,7 +1,10 @@
+import axios, { AxiosResponse } from "axios";
+
 // Model Stuff
 
 // Testing Purposes
 interface BitProps {
+	id?: number;
 	name?: string;
 	age?: number;
 }
@@ -39,5 +42,13 @@ export class Bit {
 		handlers.forEach((callback) => {
 			callback();
 		});
+	}
+
+	fetch(): void {
+		axios
+			.get(`http://localhost:4000/bits/${this.get("id")}`)
+			.then((response: AxiosResponse): void => {
+				this.set(response.data);
+			});
 	}
 }
