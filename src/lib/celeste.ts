@@ -19,4 +19,16 @@ export class Celeste {
 	constructor(attrs: CelesteProps) {
 		this.attributes = new Attributes<CelesteProps>(attrs);
 	}
+
+	get on() {
+		return this.events.on;
+	}
+
+	get trigger() {
+		return this.events.trigger;
+	}
+
+	get get() {
+		return this.attributes.get;
+	}
 }
