@@ -1,6 +1,6 @@
-import { Eventing } from "./lib/core/event";
+import { Eventing } from "./core/event";
 
-interface BitProps {
+export interface CelesteProps {
 	id?: number;
 	name?: string;
 	age?: number;
@@ -9,7 +9,7 @@ interface BitProps {
 export class Celeste {
 	public events: Eventing = new Eventing();
 
-	constructor(private data: BitProps) {}
+	constructor(private data: CelesteProps) {}
 
 	get(propName: string): number | string {
 		return this.data[propName];

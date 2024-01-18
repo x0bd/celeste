@@ -1,23 +1,21 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosPromise } from "axios";
+import { CelesteProps } from "../celeste";
 
 export class Sync {
-	fetch(): void {
-		axios
-			.get(`http://localhost:4000/bits/${this.get("id")}`)
-			.then((response: AxiosResponse): void => {
-				this.set(response.data);
-			});
+	constructor(public rootUrl: string) {}
+
+	fetch(id: number): AxiosPromise {
+		return axios.get(`${this.rootUrl}/${id}`);
 	}
 
-	save(): void {
-		const id = this.get("id");
+	// 404
+	save(data: CelesteProps): AxiosPromise {
+		const { id } = data;
+
 		if (id) {
-			axios.put(
-				`http://localhost:4000/bits/${this.get("id")}`,
-				this.data
-			);
+			return axios.put(`${this.rootUrl}/${id}`, data);
 		} else {
-			axios.post("http://localhost:4000/bits/", this.data);
+			return axios.post(this.rootUrl, data);
 		}
 	}
 }
