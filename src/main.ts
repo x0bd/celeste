@@ -1,9 +1,9 @@
 import { Celeste } from "./lib/celeste";
 
-const celeste = new Celeste({ name: "new record", age: 0 });
+const celeste = new Celeste({ id: 2, name: "violet", age: 23 });
 
-console.log(celeste.get("name"));
-celeste.on("change", () => {
-	console.log("on change");
+celeste.on("save", () => {
+	console.log("SAVED!!!", celeste);
 });
-celeste.trigger("change");
+
+celeste.save();

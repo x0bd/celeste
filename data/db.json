@@ -1,14 +1,14 @@
 {
-	"bits": [
-		{
-			"id": 1,
-			"name": "NEW NAME",
-			"age": 999999
-		},
-		{
-			"name": "NEW Record",
-			"age": 0,
-			"id": 2
-		}
-	]
+  "bits": [
+    {
+      "id": 1,
+      "name": "zedd",
+      "age": 18
+    },
+    {
+      "id": 2,
+      "name": "violet",
+      "age": 23
+    }
+  ]
 }
