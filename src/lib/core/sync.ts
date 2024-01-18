@@ -1,7 +1,10 @@
 import axios, { AxiosPromise } from "axios";
-import { CelesteProps } from "../celeste";
 
-export class Sync {
+interface HasId {
+	id?: number;
+}
+
+export class Sync<T extends HasId> {
 	constructor(public rootUrl: string) {}
 
 	fetch(id: number): AxiosPromise {
@@ -9,7 +12,7 @@ export class Sync {
 	}
 
 	// 404
-	save(data: CelesteProps): AxiosPromise {
+	save(data: T): AxiosPromise {
 		const { id } = data;
 
 		if (id) {

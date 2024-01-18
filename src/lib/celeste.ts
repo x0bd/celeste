@@ -1,4 +1,5 @@
 import { Eventing } from "./core/event";
+import { Sync } from "./core/sync";
 
 export interface CelesteProps {
 	id?: number;
@@ -6,8 +7,11 @@ export interface CelesteProps {
 	age?: number;
 }
 
+const rootUrl = "http://localhost:4000/bits";
+
 export class Celeste {
 	public events: Eventing = new Eventing();
+	public sync: Sync<CelesteProps> = new Sync<CelesteProps>(rootUrl);
 
 	constructor(private data: CelesteProps) {}
 
@@ -15,7 +19,7 @@ export class Celeste {
 		return this.data[propName];
 	}
 
-	set(update: BitProps): void {
+	set(update: CelesteProps): void {
 		Object.assign(this.data, update);
 	}
 }
