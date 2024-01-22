@@ -1,3 +1,6 @@
+import { Attributes } from "./Attribrutes";
+import { Sync } from "./sync";
+import { Eventing } from "./event";
 import { Celeste } from "./Celeste";
 
 export interface CelesteProps {
