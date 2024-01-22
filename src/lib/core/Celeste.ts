@@ -1,25 +1,31 @@
-import { Eventing } from "./core/event";
-import { Sync } from "./core/sync";
-import { Attributes } from "./core/attributes";
-import { AxiosResponse } from "axios";
+import { AxiosPromise, AxiosResponse } from "axios";
 
-// Demo
-export interface CelesteProps {
-	id?: number;
-	name?: string;
-	age?: number;
+interface Attributes<T> {
+	set(value: T): void;
+	getAll(): T;
+	get<K extends keyof T>(key: K): T[K];
 }
 
-const rootUrl = "http://localhost:4000/bits";
+interface Sync<T> {
+	fetch(id: number): AxiosPromise;
+	save(data: T): AxiosPromise;
+}
 
-export class Celeste {
-	public events: Eventing = new Eventing();
-	public sync: Sync<CelesteProps> = new Sync<CelesteProps>(rootUrl);
-	public attributes: Attributes<CelesteProps>;
+interface Events {
+	on(eventName: string, callback: () => void): void;
+	trigger(eventName: string): void;
+}
 
-	constructor(attrs: CelesteProps) {
-		this.attributes = new Attributes<CelesteProps>(attrs);
-	}
+interface HasId {
+	id?: number;
+}
+
+export class Celeste<T extends HasId> {
+	constructor(
+		private attributes: Attributes<T>,
+		private events: Events,
+		private sync: Sync<T>
+	) {}
 
 	get on() {
 		return this.events.on;
@@ -33,7 +39,7 @@ export class Celeste {
 		return this.attributes.get;
 	}
 
-	set(update: CelesteProps): void {
+	set(update: T): void {
 		this.attributes.set(update);
 		this.events.trigger("change");
 	}
