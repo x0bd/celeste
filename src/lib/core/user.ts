@@ -2,6 +2,7 @@ import { Celeste } from "./Celeste";
 import { Attributes } from "./Attribrutes";
 import { Sync } from "./Sync";
 import { Eventing } from "./Event";
+import { Collection } from "./Collection";
 
 export interface CelesteProps {
 	id?: number;
@@ -17,6 +18,13 @@ export class User extends Celeste<CelesteProps> {
 			new Attributes<CelesteProps>(attrs),
 			new Eventing(),
 			new Sync<CelesteProps>(rootUrl)
+		);
+	}
+
+	static buildUserCollection(): Collection<User, CelesteProps> {
+		return new Collection<User, CelesteProps>(
+			rootUrl,
+			(json: CelesteProps) => User.Build(json)
 		);
 	}
 }
