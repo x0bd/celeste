@@ -1,9 +1,13 @@
-import { User } from "./lib/core/User";
+import { Collection } from "./lib/core/Collection";
+import { CelesteProps, User } from "./lib/core/User";
 
-const user = User.Build({ id: 1 });
+const collection = new Collection<User, CelesteProps>(
+	"http://localhost:4000/bits",
+	(json: CelesteProps) => User.Build(json)
+);
 
-user.on("change", () => {
-	console.log(user);
+collection.on("change", () => {
+	console.log(collection);
 });
 
-user.fetch();
+collection.fetch();

@@ -31,12 +31,12 @@ export class Celeste<T extends HasId> {
 		return this.events.on;
 	}
 
-	get trigger() {
-		return this.events.trigger;
-	}
-
 	get get() {
 		return this.attributes.get;
+	}
+
+	get trigger() {
+		return this.events.trigger;
 	}
 
 	set(update: T): void {
