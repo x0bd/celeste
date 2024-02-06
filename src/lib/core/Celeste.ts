@@ -1,3 +1,5 @@
+// AKA MODEL
+
 import { AxiosPromise, AxiosResponse } from "axios";
 
 interface Attributes<T> {

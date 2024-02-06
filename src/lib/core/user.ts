@@ -27,4 +27,9 @@ export class User extends Celeste<CelesteProps> {
 			(json: CelesteProps) => User.Build(json)
 		);
 	}
+
+	setRandomAge(): void {
+		const age = Math.round(Math.random() * 100);
+		this.set({ age });
+	}
 }
