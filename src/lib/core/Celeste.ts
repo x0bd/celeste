@@ -61,6 +61,7 @@ export class Celeste<T extends HasId> {
 			.save(this.attributes.getAll())
 			.then((response: AxiosResponse): void => {
 				this.trigger("save");
+				console.log(response);
 			})
 			.catch(() => {
 				this.trigger("error");
