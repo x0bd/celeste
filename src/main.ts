@@ -1,9 +1,5 @@
-import { User } from "./lib/core/User";
+import { Form } from "./lib/views/Form";
 
-const collection = User.buildUserCollection();
+const form = new Form(document.getElementById("root"));
 
-collection.on("change", () => {
-	console.log(collection);
-});
-
-collection.fetch();
+form.render();

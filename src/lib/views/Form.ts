@@ -1,13 +1,18 @@
 export class Form {
-	parent: Element;
+	constructor(public parent: Element) {}
 
 	template(): string {
-		return;
-		`
+		return `
                <div>
-                    <h1>User Form</h1>
-                    <input />
+                    <h1>Hello Celeste!</h1>
                <div>
           `;
+	}
+
+	render(): void {
+		const templateElement = document.createElement("template");
+		templateElement.innerHTML = this.template();
+
+		this.parent.append(templateElement.content);
 	}
 }
