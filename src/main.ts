@@ -3,6 +3,11 @@ import { Form } from "./lib/views/Form";
 
 const user = User.Build({ name: "Cassandra", age: 0 });
 
-const form = new Form(document.getElementById("root"), user);
+const root = document.getElementById("root");
 
-form.render();
+if (root) {
+	const form = new Form(root, user);
+	form.render();
+} else {
+	throw new Error("Root Not Found.");
+}
