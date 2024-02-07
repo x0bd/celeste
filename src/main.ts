@@ -1,14 +1,20 @@
-import { User } from "./lib/core/User";
-import { Edit } from "./lib/views/Edit";
+import { Collection } from "./lib/core/Collection";
+import { List } from "./lib/views/List";
+import { CelesteProps, User } from "./lib/core/User";
 
-const user = User.Build({ name: "Cassandra", age: 0 });
+const fragments = new Collection(
+	"http://localhost:4000/bits",
+	(json: CelesteProps) => {
+		return User.Build(json);
+	}
+);
 
-const root = document.getElementById("root");
+fragments.on("change", () => {
+	const root = document.getElementById("root");
 
-if (root) {
-	const edit = new Edit(root, user);
-	edit.render();
-	console.log(edit);
-} else {
-	throw new Error("Root Not Found.");
-}
+	if (root) {
+		new List(root, fragments).render();
+	}
+});
+
+fragments.fetch();
